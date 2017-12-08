@@ -6,4 +6,4 @@ app.get('/', (req, res) =>{
 
 })
 .use(express.static(__dirname + '/../.tmp'))
-.listen(7777);
+.listen(30000);

@@ -22,7 +22,7 @@ gulp.task('bundle', () => {
   .pipe(gulp.dest('./.tmp'))
 });
 
-gulp.task('serve', ['live-server'], () => {
+gulp.task('serve', ['bundle','live-server'], () => {
   browserSync.init(null, {
     proxy: "http://localhost:7777",
     port:9001
