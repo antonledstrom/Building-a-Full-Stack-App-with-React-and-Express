@@ -1,0 +1,20 @@
+{
+  "name": "react-express",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Anton Ledström <anton.ledstrom@digitalent.se>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bower": "*"
+  }
+}
