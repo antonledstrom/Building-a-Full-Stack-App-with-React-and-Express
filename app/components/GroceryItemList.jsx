@@ -1,5 +1,6 @@
 var React = require('react');
 var GroceryItem = require('./GroceryItem.jsx');
+var GroceryListAddItem = require('./GroceryListAddItem.jsx');
 
 class GroceryItemList extends React.Component {
   render(){
@@ -10,6 +11,8 @@ class GroceryItemList extends React.Component {
             this.props.items.map((item, i ) => (<GroceryItem key={ 'item_' + i } item={ item } />))
           }
         </div>
+
+        <GroceryListAddItem />
       </div>)
   }
 }

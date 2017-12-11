@@ -2,16 +2,16 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var GroceryItemList = require('./components/GroceryItemList.jsx');
+var groceryItemStore = require('./stores/GroceryItemStore.jsx');
 
-var seedData = [{
-  name: "Ice Cream"
-},{
-  name: "Waffles"
-},{
-  name: "Candy",
-  purchased: true
-},{
-  name: "Snarks"
-}];
+var initial =  groceryItemStore.getItems();
+function render(){
+  ReactDOM.render(<GroceryItemList items={ initial } />, app);
+}
 
-ReactDOM.render(<GroceryItemList items={ seedData } />, app);
+groceryItemStore.onChange((items)=>{
+  initial = items
+  render();
+});
+
+render();
