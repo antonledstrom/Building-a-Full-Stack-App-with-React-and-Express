@@ -7,11 +7,11 @@ var reactify = require('reactify');
 
 
 gulp.task('live-server', () => {
- var server = new LiveServer('server/main.js');
- server.start();
+  var server = new LiveServer('server/main.js');
+  server.start();
 });
 
-gulp.task('bundle', () => {
+gulp.task('bundle', ['copy'], () => {
   return browserify({
       entries: 'app/main.jsx',
       debug: true
@@ -19,14 +19,18 @@ gulp.task('bundle', () => {
   .transform(reactify)
   .bundle()
   .pipe(source('app.js'))
-  .pipe(gulp.dest('./.tmp'))
+  .pipe(gulp.dest('./.tmp'));
 });
+
+gulp.task('copy', () => {
+    gulp.src(['app/*css'])
+    .pipe(gulp.dest('./.tmp'));
+});
+
 
 gulp.task('serve', ['bundle','live-server'], () => {
   browserSync.init(null, {
-    proxy: "http://localhost:7777",
-    port:9001
-
+    proxy: "http://localhost:30001",
+    port: 9001
   })
-
 });
