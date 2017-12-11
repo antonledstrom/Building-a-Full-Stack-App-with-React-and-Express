@@ -21,6 +21,9 @@ class GroceryItemStore {
           case "add":
             this.addGroceryItem(event.payload)
             break;
+          case "delete":
+            this.deleteGroceryItem(event.payload)
+            break;
         }
       }
     })
@@ -40,6 +43,12 @@ class GroceryItemStore {
 
   addGroceryItem(item){
     this.items.push(item);
+    this.triggerListeners();
+  }
+
+  deleteGroceryItem (item){
+    var index = this.items.findIndex((_item) => _item.name == item.name);
+    this.items.splice(index, 1); 
     this.triggerListeners();
   }
 }
