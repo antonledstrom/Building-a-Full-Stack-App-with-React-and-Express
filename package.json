@@ -19,6 +19,7 @@
     "gulp": "^3.9.1",
     "gulp-live-server": "0.0.31",
     "jquery": "^3.2.1",
+    "mongoose": "^4.13.7",
     "react": "^16.2.0",
     "react-addons": "^0.9.1-deprecated",
     "react-dom": "^16.2.0",
