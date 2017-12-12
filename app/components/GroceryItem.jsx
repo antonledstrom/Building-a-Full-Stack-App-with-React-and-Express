@@ -9,12 +9,12 @@ class GroceryItem extends React.Component {
 
   togglePurchased(e){
     e.preventDefault();
-    // let item = this.props.item
-    // if(item.purchased){
-    //   action.unbuy(item);
-    // }else{
-    //   action.buy(item);
-    // }
+    let item = this.props.item
+    if(item.purchased){
+      action.unbuy(item);
+    }else{
+      action.buy(item);
+    }
   }
 
 

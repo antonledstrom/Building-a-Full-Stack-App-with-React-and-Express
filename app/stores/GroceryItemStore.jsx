@@ -25,12 +25,12 @@ class GroceryItemStore {
           case "delete":
             this.deleteGroceryItem(event.payload)
             break;
-          // case "buy":
-          //   this.setGroceryItemBought(event.payload, true)
-          //   break;
-          // case "unbuy":
-          //   this.setGroceryItemBought(event.payload, false)
-          //   break;
+          case "buy":
+            this.setGroceryItemBought(event.payload, true)
+            break;
+          case "unbuy":
+            this.setGroceryItemBought(event.payload, false)
+            break;
         }
       }
     })

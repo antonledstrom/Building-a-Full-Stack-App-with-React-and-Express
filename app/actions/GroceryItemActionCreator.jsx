@@ -13,17 +13,17 @@ module.exports = {
       type: "grocery-item:delete"
     });
   },
-  // buy(item){
-  //   dispatcher.dispatch({
-  //     payload: item,
-  //     type: "grocery-item:buy"
-  //   });
-  // },
-  // unbuy(item){
-  //   dispatcher.dispatch({
-  //     payload: item,
-  //     type: "grocery-item:unbuy"
-  //   });
-  // }
+  buy(item){
+    dispatcher.dispatch({
+      payload: item,
+      type: "grocery-item:buy"
+    });
+  },
+  unbuy(item){
+    dispatcher.dispatch({
+      payload: item,
+      type: "grocery-item:unbuy"
+    });
+  }
 
 }
