@@ -5,16 +5,15 @@ var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var reactify = require('reactify');
 
-
 gulp.task('live-server', () => {
   var server = new LiveServer('server/main.js');
   server.start();
 });
 
-gulp.task('bundle', ['copy'], () => {
+gulp.task('bundle', () => {
   return browserify({
       entries: 'app/main.jsx',
-      debug: true
+      debug: true,
   })
   .transform(reactify)
   .bundle()
@@ -22,15 +21,17 @@ gulp.task('bundle', ['copy'], () => {
   .pipe(gulp.dest('./.tmp'));
 });
 
-gulp.task('copy', () => {
-    gulp.src(['app/*css'])
-    .pipe(gulp.dest('./.tmp'));
-});
+//
+// ['copy'],
+// gulp.task('copy',() => {
+//     gulp.src(['app/*.css'])
+//     .pipe(gulp.dest('./.tmp'));
+// });
+//
 
-
-gulp.task('serve', ['bundle','live-server'], () => {
-  browserSync.init(null, {
-    proxy: "http://localhost:30001",
-    port: 9001
-  })
+gulp.task('serve',['bundle','live-server'], () => {
+    browserSync.init(null,{
+        proxy:"http://localhost:7777",
+        port: 9001
+    });
 });

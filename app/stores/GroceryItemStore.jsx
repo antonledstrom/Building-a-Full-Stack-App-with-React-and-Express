@@ -1,4 +1,5 @@
 var dispatcher = require('./../dispatcher.js');
+
 class GroceryItemStore {
   constructor(){
     this.items = [{
@@ -24,6 +25,12 @@ class GroceryItemStore {
           case "delete":
             this.deleteGroceryItem(event.payload)
             break;
+          // case "buy":
+          //   this.setGroceryItemBought(event.payload, true)
+          //   break;
+          // case "unbuy":
+          //   this.setGroceryItemBought(event.payload, false)
+          //   break;
         }
       }
     })
@@ -48,7 +55,13 @@ class GroceryItemStore {
 
   deleteGroceryItem (item){
     var index = this.items.findIndex((_item) => _item.name == item.name);
-    this.items.splice(index, 1); 
+    this.items.splice(index, 1);
+    this.triggerListeners();
+  }
+
+  setGroceryItemBought (item, isBought){
+    var _item = this.items.filter((_item) => _item.name == item.name);
+    item.purchased = isBought
     this.triggerListeners();
   }
 }
