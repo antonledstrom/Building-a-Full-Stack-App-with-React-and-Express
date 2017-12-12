@@ -22,7 +22,7 @@ class GroceryItem extends React.Component {
     let item = this.props.item;
 
     return (<div className="grocery-item row">
-      <div className="six columns">
+  			<div className="six columns">
         <h4 className={ item.purchased ? 'strikethrough' : "" } >{ item.name }</h4>
         </div>
         <form className="three columns" onSubmit={this.togglePurchased.bind(this) } >
