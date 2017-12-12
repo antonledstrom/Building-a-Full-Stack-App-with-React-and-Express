@@ -1,20 +1,18 @@
 var dispatcher = require('./../dispatcher.js');
+var helper = require('./../helpers/RestHelper.js');
+
 
 class GroceryItemStore {
   constructor(){
-    this.items = [{
-        name: "Ice Cream"
-      },{
-        name: "Waffles"
-      },{
-        name: "Candy",
-        purchased: true
-      },{
-        name: "Snarks"
-      }];
-
+    this.items = [];
     this.listeners = [];
-    dispatcher.register((event)=>{
+
+    helper.get('/api/items').then((data)=>{
+       this.items = data
+       this.triggerListeners();
+    });
+
+    dispatcher.register((event)=> {
       var split = event.type.split(':');
       if(split[0] === 'grocery-item'){
 
@@ -33,7 +31,9 @@ class GroceryItemStore {
             break;
         }
       }
-    })
+    });
+
+
   }
 
   getItems(){
@@ -51,6 +51,12 @@ class GroceryItemStore {
   addGroceryItem(item){
     this.items.push(item);
     this.triggerListeners();
+
+    helper.post('/api/items', item); 
+    // .then((data)=>{
+    //    this.items = data
+    //    this.triggerListeners();
+    // });
   }
 
   deleteGroceryItem (item){
