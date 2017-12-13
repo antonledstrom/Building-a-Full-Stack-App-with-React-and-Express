@@ -52,7 +52,7 @@ class GroceryItemStore {
     this.items.push(item);
     this.triggerListeners();
 
-    helper.post('/api/items', item); 
+    helper.post('/api/items', item);
     // .then((data)=>{
     //    this.items = data
     //    this.triggerListeners();
@@ -63,12 +63,16 @@ class GroceryItemStore {
     var index = this.items.findIndex((_item) => _item.name == item.name);
     this.items.splice(index, 1);
     this.triggerListeners();
+
+    helper.del('/api/items/' + item._id);
   }
 
   setGroceryItemBought (item, isBought){
     var _item = this.items.filter((_item) => _item.name == item.name);
     item.purchased = isBought
     this.triggerListeners();
+
+    helper.patch('/api/items/' + item._id, item);
   }
 }
 

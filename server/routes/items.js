@@ -9,5 +9,28 @@ module.exports = function(app){
     var item = req.body;
     var groceryItem = new GroceryItem(item);
     groceryItem.save((err, data) => res.status(300).send());
+  });
+
+  app.route('/api/items/:id')
+  .delete((req, res) => {
+    GroceryItem.findByIdAndRemove(req.params.id, (err, doc) => {
+      if(err){
+        res.status(500).send();
+      }else{
+        res.status(204).send();
+      }
+    })
+  })
+  .patch((req, res) => {
+    GroceryItem.findOne({
+      _id: req.body._id
+    }, (error, doc) => {
+        for(let key in req.body){
+          doc[key] = req.body[key]
+        }
+
+        doc.save();
+        res.status(204).send();
+    })
   })
 }
